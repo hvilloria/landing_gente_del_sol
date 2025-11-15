@@ -116,3 +116,50 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+
+// ================== WhatsApp Floating Button ==================
+(() => {
+  const PHONE = "5491128816400"; // Tu número de WhatsApp
+  const DEFAULT_MESSAGE = "¡Hola! Me gustaría hacer una consulta 🙂";
+
+  const btn = document.getElementById('waButton');
+  const tip = document.getElementById('waTooltip');
+  if (!btn || !tip) return;
+
+  // Abrir WhatsApp
+  const openWA = () => {
+    const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  // Click simple
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openWA();
+  });
+
+  // Tooltip en desktop
+  const positionTooltip = () => {
+    const r = btn.getBoundingClientRect();
+    tip.style.left = (r.left - 8) + 'px';
+    tip.style.top  = (r.top - 8) + 'px';
+  };
+  
+  btn.addEventListener('mouseenter', () => { 
+    positionTooltip(); 
+    btn.setAttribute('data-hover','1'); 
+  });
+  
+  btn.addEventListener('mouseleave', () => { 
+    btn.removeAttribute('data-hover'); 
+  });
+
+  // Teclado accesible
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { 
+      e.preventDefault(); 
+      openWA(); 
+    }
+  });
+})();
