@@ -50,29 +50,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact Form Submission
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const message = formData.get('message');
-    
-    // Show success message (you can replace this with actual form submission logic)
-    alert('¡Mensaje enviado! Nos pondremos en contacto contigo a la brevedad.');
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Optional: Send to WhatsApp
-    // const whatsappMessage = `Hola! Mi nombre es ${name}. ${message}`;
-    // window.open(`https://wa.me/5491112345678?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-});
 
 // Intersection Observer for animations
 const observerOptions = {
