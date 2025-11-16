@@ -97,7 +97,7 @@ window.addEventListener('scroll', () => {
 
 // ================== WhatsApp Floating Button ==================
 (() => {
-  const PHONE = "5491128816400"; // Tu número de WhatsApp
+  const PHONE = "5491136456900";
   const DEFAULT_MESSAGE = "¡Hola! Me gustaría hacer una consulta 🙂";
 
   const btn = document.getElementById('waButton');
