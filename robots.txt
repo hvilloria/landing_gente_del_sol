@@ -1,0 +1,38 @@
+# robots.txt para gentedelsol.com
+
+# Permitir a todos los motores de búsqueda
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+Allow: /styles.css
+Allow: /scripts.js
+Allow: /*.css$
+Allow: /*.js$
+
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+
+Sitemap: https://www.gentedelsol.com/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Tiempo de rastreo (crawl-delay) - opcional, usar solo si hay problemas de carga del servidor
+# User-agent: *
+# Crawl-delay: 10

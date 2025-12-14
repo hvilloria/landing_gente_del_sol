@@ -3,15 +3,15 @@ const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
+	mobileMenu.classList.toggle('active');
 });
 
 // Close mobile menu when clicking on a link
 const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-    });
+	link.addEventListener('click', () => {
+		mobileMenu.classList.remove('active');
+	});
 });
 
 // Header scroll effect
@@ -19,124 +19,150 @@ const header = document.getElementById('header');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-    
-    lastScroll = currentScroll;
+	const currentScroll = window.pageYOffset;
+
+	if (currentScroll > 50) {
+		header.classList.add('scrolled');
+	} else {
+		header.classList.remove('scrolled');
+	}
+
+	lastScroll = currentScroll;
 });
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        }
-    });
+	anchor.addEventListener('click', function (e) {
+		const href = this.getAttribute('href');
+		if (href !== '#') {
+			e.preventDefault();
+			const target = document.querySelector(href);
+			if (target) {
+				const headerHeight = header.offsetHeight;
+				const targetPosition = target.offsetTop - headerHeight;
+
+				window.scrollTo({
+					top: targetPosition,
+					behavior: 'smooth'
+				});
+			}
+		}
+	});
 });
 
 
 // Intersection Observer for animations
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+	threshold: 0.1,
+	rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
+	entries.forEach(entry => {
+		if (entry.isIntersecting) {
+			entry.target.style.opacity = '1';
+			entry.target.style.transform = 'translateY(0)';
+		}
+	});
 }, observerOptions);
 
 // Observe elements for animation
 document.querySelectorAll('.value-card, .catalog-card, .contact-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+	el.style.opacity = '0';
+	el.style.transform = 'translateY(20px)';
+	el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+	observer.observe(el);
 });
 
 // Add active state to navigation links based on scroll position
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.pageYOffset;
-    
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`nav a[href="#${sectionId}"]`);
-        
-        if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelectorAll('nav a').forEach(link => {
-                link.style.color = '';
-            });
-            navLink.style.color = 'var(--red-primary)';
-        }
-    });
+	const sections = document.querySelectorAll('section[id]');
+	const scrollY = window.pageYOffset;
+
+	sections.forEach(section => {
+		const sectionHeight = section.offsetHeight;
+		const sectionTop = section.offsetTop - 100;
+		const sectionId = section.getAttribute('id');
+		const navLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+
+		if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+			document.querySelectorAll('nav a').forEach(link => {
+				link.style.color = '';
+			});
+			navLink.style.color = 'var(--red-primary)';
+		}
+	});
 });
 
 
 // ================== WhatsApp Floating Button ==================
 (() => {
-  const PHONE = "5491136456900";
-  const DEFAULT_MESSAGE = "¡Hola! Me gustaría hacer una consulta 🙂";
+	const PHONE = "5491136456900";
+	const DEFAULT_MESSAGE = "¡Hola! Me gustaría hacer una consulta 🙂";
 
-  const btn = document.getElementById('waButton');
-  const tip = document.getElementById('waTooltip');
-  if (!btn || !tip) return;
+	const btn = document.getElementById('waButton');
+	const tip = document.getElementById('waTooltip');
+	if (!btn || !tip) return;
 
-  // Abrir WhatsApp
-  const openWA = () => {
-    const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+	// Abrir WhatsApp
+	const openWA = () => {
+		const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+		window.open(url, '_blank', 'noopener,noreferrer');
+	};
 
-  // Click simple
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openWA();
-  });
+	// Click simple
+	btn.addEventListener('click', (e) => {
+		e.preventDefault();
+		openWA();
+	});
 
-  // Tooltip en desktop
-  const positionTooltip = () => {
-    const r = btn.getBoundingClientRect();
-    tip.style.left = (r.left - 8) + 'px';
-    tip.style.top  = (r.top - 8) + 'px';
-  };
-  
-  btn.addEventListener('mouseenter', () => { 
-    positionTooltip(); 
-    btn.setAttribute('data-hover','1'); 
-  });
-  
-  btn.addEventListener('mouseleave', () => { 
-    btn.removeAttribute('data-hover'); 
-  });
+	// Tooltip en desktop
+	const positionTooltip = () => {
+		const r = btn.getBoundingClientRect();
+		tip.style.left = (r.left - 8) + 'px';
+		tip.style.top = (r.top - 8) + 'px';
+	};
 
-  // Teclado accesible
-  btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { 
-      e.preventDefault(); 
-      openWA(); 
-    }
-  });
+	btn.addEventListener('mouseenter', () => {
+		positionTooltip();
+		btn.setAttribute('data-hover', '1');
+	});
+
+	btn.addEventListener('mouseleave', () => {
+		btn.removeAttribute('data-hover');
+	});
+
+	// Teclado accesible
+	btn.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			openWA();
+		}
+	});
 })();
+
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+	const faqItems = document.querySelectorAll('.faq-item');
+	
+	faqItems.forEach(item => {
+		const question = item.querySelector('.faq-question');
+		
+		question.addEventListener('click', () => {
+			const isActive = item.classList.contains('active');
+			
+			// Cerrar todos los items
+			faqItems.forEach(otherItem => {
+				otherItem.classList.remove('active');
+				otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+			});
+			
+			// Abrir el item clickeado si no estaba abierto
+			if (!isActive) {
+				item.classList.add('active');
+				question.setAttribute('aria-expanded', 'true');
+			}
+		});
+	});
+});
