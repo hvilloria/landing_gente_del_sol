@@ -112,6 +112,7 @@ nav a:hover {
 nav.footer-col {
 	flex-direction: column;
 	gap: 0;
+	align-items: flex-start;
 }
 
 .btn-whatsapp {
