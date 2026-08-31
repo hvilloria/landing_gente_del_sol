@@ -7,6 +7,8 @@
 
 :root {
 	--red-primary: #D53030;
+	/* red of the logo mark itself; used behind it so no rim shows through */
+	--red-logo: #C44039;
 	--red-dark: #B52828;
 	--gray-dark: #4A5568;
 	--gray-medium: #718096;
@@ -65,7 +67,7 @@ body {
 .logo-circle {
 	width: 48px;
 	height: 48px;
-	background-color: var(--red-primary);
+	background-color: var(--red-logo);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -76,7 +78,9 @@ body {
 }
 
 .logo-circle img {
-	height: 25px;
+	width: 100%;
+	height: 100%;
+	display: block;
 }
 
 .logo-text h1 {
@@ -303,7 +307,7 @@ nav.footer-col {
 .logo-circle-large {
 	width: 150px;
 	height: 150px;
-	background-color: var(--red-primary);
+	background-color: var(--red-logo);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -315,7 +319,9 @@ nav.footer-col {
 }
 
 .logo-circle-large img {
-	height: 70px;
+	width: 100%;
+	height: 100%;
+	display: block;
 }
 
 .hero-logo-text {

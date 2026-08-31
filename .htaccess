@@ -1,23 +1,23 @@
-# .htaccess para gentedelsol.com
+# .htaccess para gdsrepuestos.com
 # Configuración de SEO y optimización de rendimiento
 
 # ===================================
 # REDIRECCIONES Y DOMINIOS
 # ===================================
 
-# Forzar HTTPS (SSL)
 RewriteEngine On
+
+# Canonical host: www.gdsrepuestos.com (matches the canonical/og:url meta tags).
+# Any other host that resolves here - the bare non-www domain, or a legacy
+# domain still pointed at this document root - is sent to the canonical one in
+# a single 301 hop. Keep this above the HTTPS rule so that redirect fixes the
+# host and the scheme together instead of chaining two redirects.
+RewriteCond %{HTTP_HOST} !^www\.gdsrepuestos\.com$ [NC]
+RewriteRule ^(.*)$ https://www.gdsrepuestos.com/$1 [L,R=301]
+
+# Forzar HTTPS (SSL)
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Forzar WWW o NO-WWW (elige uno)
-# Opción 1: Forzar www
-# RewriteCond %{HTTP_HOST} ^gentedelsol\.com [NC]
-# RewriteRule ^(.*)$ https://www.gentedelsol.com/$1 [L,R=301]
-
-# Opción 2: Forzar NO-www (recomendado para simplicidad)
-RewriteCond %{HTTP_HOST} ^www\.gentedelsol\.com [NC]
-RewriteRule ^(.*)$ https://gentedelsol.com/$1 [L,R=301]
 
 # ===================================
 # COMPRESIÓN GZIP

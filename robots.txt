@@ -1,38 +1,9 @@
-# robots.txt para gentedelsol.com
+# robots.txt para gdsrepuestos.com
 
-# Permitir a todos los motores de búsqueda
+# Single-page static site: everything is crawlable.
+# Naming a crawler in its own group would make it ignore this one entirely,
+# so keep all rules here under the wildcard group.
 User-agent: *
 Allow: /
 
-Disallow: /admin/
-Disallow: /cgi-bin/
-Disallow: /tmp/
-Disallow: /*.json$
-Disallow: /*.xml$
-
-Allow: /styles.css
-Allow: /scripts.js
-Allow: /*.css$
-Allow: /*.js$
-
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.svg$
-Allow: /*.webp$
-
-Sitemap: https://www.gentedelsol.com/sitemap.xml
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Tiempo de rastreo (crawl-delay) - opcional, usar solo si hay problemas de carga del servidor
-# User-agent: *
-# Crawl-delay: 10
+Sitemap: https://www.gdsrepuestos.com/sitemap.xml
